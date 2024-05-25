@@ -11,7 +11,7 @@ COPY . /opt/auto-code-rover
 
 WORKDIR /opt/auto-code-rover/demo_vis/front
 RUN sed -i 's/\r$//' /opt/auto-code-rover/demo_vis/run.sh
-RUN apt install -y curl
+RUN apt install -y curl nginx
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - 
 RUN apt-get install nodejs -y
 RUN npm i
@@ -20,5 +20,5 @@ RUN npm run build
 WORKDIR /opt/auto-code-rover
 RUN conda env create -f environment.yml
 
-EXPOSE 3000 5000
+EXPOSE 8080 3000 5000
 ENTRYPOINT [ "/bin/bash" ]
